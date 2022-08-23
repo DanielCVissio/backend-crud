@@ -3,13 +3,13 @@ const bcrypt = require('bcrypt');
 const User = require('../models/User');
 const app = express();
 app.post('/register', function (req, res) {
-  let body = req.body;
-  let { nombre, email, password, role } = body;
-  let usuario = new User({
+  const body = req.body;
+  const { nombre, email, password } = body;
+  console.log(nombre, email, password)
+  const usuario = new User({
     nombre,
     email,
-    password: bcrypt.hashSync(password, 10),
-    role
+    password: bcrypt.hashSync(password, 10)
   });
 usuario.save((err, usuarioDB) => {
     if (err) {
